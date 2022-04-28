@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         }
         resultString = "=" + result;
         view();
+        operation=resultString.replace("=","").trim();
+        resultString="";
 
 
     }

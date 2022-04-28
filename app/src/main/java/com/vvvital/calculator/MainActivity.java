@@ -8,7 +8,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    String operation="";
+    String operation = "";
+    String resultString = "";
+    int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,39 @@ public class MainActivity extends AppCompatActivity {
         view();
     }
 
+    public void onClickEquals(View view) {
+        String[] operand = operation.split("[*\\-/+]");
+        System.out.println(operand[0]);
+        System.out.println(operand[1]);
+        String operator = operation.replaceAll("[0-9=]", "");
+        System.out.println(operator);
+        int number1 = Integer.parseInt(operand[0]);
+        int number2 = Integer.parseInt(operand[1]);
+        switch (operator) {
+            case "*": {
+                result = number1 * number2;
+                break;
+            }
+            case "-": {
+                result = number1 - number2;
+                break;
+            }
+            case "+": {
+                result = number1 + number2;
+                break;
+            }
+            case "/":
+                result = number1 / number2;
+                break;
+        }
+        resultString = "=" + result;
+        view();
 
-    public void onClickBack(View view){
-        if (operation.length()>0) {
+
+    }
+
+    public void onClickBack(View view) {
+        if (operation.length() > 0) {
             operation = operation.substring(0, operation.length() - 1);
         }
         view();
@@ -33,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void view() {
         TextView textView = findViewById(R.id.console);
-        textView.setText(operation);
+        textView.setText(operation + resultString);
     }
 
 }

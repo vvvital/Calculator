@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         }
         resultString = "=" + result;
         view();
+        operation=resultString.replace("=","").trim();
+        resultString="";
 
 
     }
@@ -60,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         if (operation.length() > 0) {
             operation = operation.substring(0, operation.length() - 1);
         }
+        view();
+    }
+    public void onClickReset(View view){
+        operation="";
+        resultString="";
+        result=0;
         view();
     }
 

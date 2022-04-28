@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         }
         view();
     }
+    public void onClickReset(View view){
+        operation="";
+        resultString="";
+        result=0;
+        view();
+    }
 
     public void view() {
         TextView textView = findViewById(R.id.console);

@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         view();
     }
 
-    public void onClickEquals(View view){
-
-    }
 
     public void onClickBack(View view){
         if (operation.length()>0) {

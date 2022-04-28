@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="back" />
+                android:text="back"
+                android:onClick="onClickBack"/>
 
             <Button
                 android:id="@+id/button_percent"

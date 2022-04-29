@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     String operation = "";
     String resultString = "";
-    int result;
+    double result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEquals(View view) {
+        operation = operation.replaceAll(",", ".");
         String[] operand = operation.split("[*\\-/+]");
         System.out.println(operand[0]);
         System.out.println(operand[1]);
-        String operator = operation.replaceAll("[0-9=]", "");
+        String operator = operation.replaceAll("[0-9=.]", "");
         System.out.println(operator);
-        int number1 = Integer.parseInt(operand[0]);
-        int number2 = Integer.parseInt(operand[1]);
+        double number1 = Double.parseDouble(operand[0]);
+        double number2 = Double.parseDouble(operand[1]);
         switch (operator) {
             case "*": {
                 result = number1 * number2;
@@ -50,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 result = number1 / number2;
                 break;
         }
-        resultString = "=" + result;
+        if (result == (int) result) {
+            resultString = "=" + (int) result;
+        } else {
+            resultString = "=" + result;
+        }
         view();
-        operation=resultString.replace("=","").trim();
-        resultString="";
+        operation = resultString.replace("=", "").trim();
+        resultString = "";
 
 
     }
@@ -64,10 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
         view();
     }
-    public void onClickReset(View view){
-        operation="";
-        resultString="";
-        result=0;
+
+    public void onClickReset(View view) {
+        operation = "";
+        resultString = "";
+        result = 0;
         view();
     }
 

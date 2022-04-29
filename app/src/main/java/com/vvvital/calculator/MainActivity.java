@@ -28,10 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickEquals(View view) {
         operation = operation.replaceAll(",", ".");
         String[] operand = operation.split("[*\\-/+]");
-        System.out.println(operand[0]);
-        System.out.println(operand[1]);
         String operator = operation.replaceAll("[0-9=.]", "");
-        System.out.println(operator);
         double number1 = Double.parseDouble(operand[0]);
         double number2 = Double.parseDouble(operand[1]);
         switch (operator) {

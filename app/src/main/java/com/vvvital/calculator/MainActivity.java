@@ -26,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEquals(View view) {
+        double negative=1;
         try {
+            if (operation.startsWith("-")){
+                operation=operation.replaceFirst("-","").trim();
+                negative=-1;
+            }
             operation = operation.replaceAll(",", ".");
             String[] operand = operation.split("[*\\-/+]");
             String operator = operation.replaceAll("[0-9=.]", "");
-            double number1 = Double.parseDouble(operand[0]);
+            double number1 = Double.parseDouble(operand[0])*negative;
             double number2 = Double.parseDouble(operand[1]);
             switch (operator) {
                 case "*": {

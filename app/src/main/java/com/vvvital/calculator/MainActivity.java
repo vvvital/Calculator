@@ -26,32 +26,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEquals(View view) {
-        operation = operation.replaceAll(",", ".");
-        String[] operand = operation.split("[*\\-/+]");
-        String operator = operation.replaceAll("[0-9=.]", "");
-        double number1 = Double.parseDouble(operand[0]);
-        double number2 = Double.parseDouble(operand[1]);
-        switch (operator) {
-            case "*": {
-                result = number1 * number2;
-                break;
+        try {
+            operation = operation.replaceAll(",", ".");
+            String[] operand = operation.split("[*\\-/+]");
+            String operator = operation.replaceAll("[0-9=.]", "");
+            double number1 = Double.parseDouble(operand[0]);
+            double number2 = Double.parseDouble(operand[1]);
+            switch (operator) {
+                case "*": {
+                    result = number1 * number2;
+                    break;
+                }
+                case "-": {
+                    result = number1 - number2;
+                    break;
+                }
+                case "+": {
+                    result = number1 + number2;
+                    break;
+                }
+                case "/":
+                    result = number1 / number2;
+                    break;
             }
-            case "-": {
-                result = number1 - number2;
-                break;
+            if (result == (int) result) {
+                resultString = "=" + (int) result;
+            } else {
+                resultString = "=" + result;
             }
-            case "+": {
-                result = number1 + number2;
-                break;
-            }
-            case "/":
-                result = number1 / number2;
-                break;
-        }
-        if (result == (int) result) {
-            resultString = "=" + (int) result;
-        } else {
-            resultString = "=" + result;
+        }catch (Exception e){
+            operation = "";
+            resultString = "ERROR";
+            result = 0;
+            view();
         }
         view();
         operation = resultString.replace("=", "").trim();
